@@ -12,6 +12,7 @@ const DRIVE_KEY_PATH = path.join( __dirname, 'GoogleKey.json' );
 const MIDDLE = multer();
 
 service.use( cors() );
+service.use( express.json({ limit:"50Gb" }) );
 
 service.all("/", ( req, res ) => {
     res.json({
@@ -62,11 +63,8 @@ function GetBuffer( file ) {
     return bufferStream
 }
 
-service.post("/api/test", MIDDLE.single("image"), async ( req, res ) => {
-    await res.json({
-        file: req.file,
-        body: req.body
-    })
+service.post("/api/test", async ( req, res ) => {
+    await res.json( req.body );
 })
 
 service.listen( process.env.PORT || 8960 );
