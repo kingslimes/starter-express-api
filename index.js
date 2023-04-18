@@ -1,3 +1,4 @@
+const bodyParser = require("body-parser");
 const { google } = require("googleapis");
 const express = require("express");
 const stream = require("stream");
@@ -12,7 +13,8 @@ const DRIVE_KEY_PATH = path.join( __dirname, 'GoogleKey.json' );
 const MIDDLE = multer();
 
 service.use( cors() );
-service.use( express.json({ limit:"1024Mb" }) );
+service.use( bodyParser.urlencoded({ extended:false,limit:"1024Mb" }) );
+service.use( bodyParser.json({ limit:"1024Mb" }) );
 
 service.all("/", ( req, res ) => {
     res.json({
@@ -64,7 +66,7 @@ function GetBuffer( file ) {
 }
 
 service.post("/api/test", async ( req, res ) => {
-    await res.json({ response:req.body });
+    await res.json({ result:req.body });
 })
 
 service.listen( process.env.PORT || 8960 );
