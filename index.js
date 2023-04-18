@@ -66,6 +66,7 @@ function GetBuffer( file ) {
 }
 
 service.post("/api/test", async ( req, res ) => {
+    console.log( req.body );
     await res.json({ result:req.body });
 })
 
