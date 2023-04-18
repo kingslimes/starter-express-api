@@ -20,11 +20,11 @@ service.all("/", ( req, res ) => {
     })
 });
 
-service.post("/api/v1/image", MIDDLE.any(), async ( req, res ) => {
+service.post("/api/v1/image", MIDDLE.single("image"), async ( req, res ) => {
     
     try {
         
-        const bufferStream = GetBuffer( req.files[0] );
+        const bufferStream = GetBuffer( req.file );
         const auth = new google.auth.GoogleAuth({
             keyFile: DRIVE_KEY_PATH,
             scopes: DRIVE_SCOPE
@@ -61,5 +61,12 @@ function GetBuffer( file ) {
     bufferStream.end( file.buffer );
     return bufferStream
 }
+
+service.post("/api/test", MIDDLE.single("image"), async (arg) => {
+    await res.json({
+        file: req.file,
+        body: req.body
+    })
+})
 
 service.listen( process.env.PORT || 8960 );
