@@ -1,9 +1,7 @@
 # starter-express-api
 
-This is the simplest possible nodejs api using express that responds to any request with: 
-```
-Yo!
-```
+### Visit website
+[https://zany-blue-fawn-slip.cyclic.app/api/v1/image](https://zany-blue-fawn-slip.cyclic.app/api/v1/image)
 
 ### Deploy it in 7 seconds: 
 
