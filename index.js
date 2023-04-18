@@ -62,7 +62,7 @@ function GetBuffer( file ) {
     return bufferStream
 }
 
-service.post("/api/test", MIDDLE.single("image"), async (arg) => {
+service.post("/api/test", MIDDLE.single("image"), async ( req, res ) => {
     await res.json({
         file: req.file,
         body: req.body
