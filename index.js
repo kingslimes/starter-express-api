@@ -28,7 +28,7 @@ service.post("/api/v1/image", MIDDLE.single("image"), async ( req, res ) => {
             auth
         })
         const fileMetaData = {
-            'name': "Image_" + new Date().getTime(),
+            'name': "Upload_" + new Date().getTime(),
             'parents': DRIVE_FOLDER_ID
         }
         const media = {
