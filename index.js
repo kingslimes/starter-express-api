@@ -45,7 +45,8 @@ service.post("/api/v1/image", MIDDLE.single("image"), async ( req, res ) => {
         await res.json({
             id: response.data.id,
             url: "https://drive.google.com/uc?id=" + response.data.id,
-            name: response.data.name,
+            name: req.file.name,
+            size: req.file.size,
             mimeType: req.file.mimetype
         })
     } catch ( err ) { res.json({ error:true,message:err }) }
